@@ -1,0 +1,16 @@
+{
+  "APP_NAME": "Webapp IBM",
+  "About": "Acerca de",
+  "Hello world !": "HOla Mundo !",
+  "Home": "Página Principal",
+  "Logged in as": "Has iniciado sesión como",
+  "Login": "Iniciar Sesión",
+  "Logout": "Cerrar Sesión",
+  "Password": "Contraseña",
+  "Password is required": "Contraseña Requerida",
+  "Username": "Nombre de Usuario",
+  "Username is required": "Nombre de usuario es requerido",
+  "Username or password incorrect.": "Nombre de usuario o contraseña incorrecta",
+  "Remember me": "Recordarme",
+  "Version": "Versión"
+}

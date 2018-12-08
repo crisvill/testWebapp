@@ -6,6 +6,8 @@ import { Logger } from './logger.service';
 import enUS from '../../translations/en-US.json';
 import frFR from '../../translations/fr-FR.json';
 
+import esES from '../../translations/es-ES.json';
+
 const log = new Logger('I18nService');
 const languageKey = 'language';
 
@@ -21,12 +23,12 @@ export function extract(s: string) {
 
 @Injectable()
 export class I18nService {
-
   defaultLanguage: string;
   supportedLanguages: string[];
 
   constructor(private translateService: TranslateService) {
     // Embed languages to avoid extra HTTP requests
+    translateService.setTranslation('es-ES', esES);
     translateService.setTranslation('en-US', enUS);
     translateService.setTranslation('fr-FR', frFR);
   }
@@ -42,8 +44,9 @@ export class I18nService {
     this.supportedLanguages = supportedLanguages;
     this.language = '';
 
-    this.translateService.onLangChange
-      .subscribe((event: LangChangeEvent) => { localStorage.setItem(languageKey, event.lang); });
+    this.translateService.onLangChange.subscribe((event: LangChangeEvent) => {
+      localStorage.setItem(languageKey, event.lang);
+    });
   }
 
   /**
@@ -79,5 +82,4 @@ export class I18nService {
   get language(): string {
     return this.translateService.currentLang;
   }
-
 }
