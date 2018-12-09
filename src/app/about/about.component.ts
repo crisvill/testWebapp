@@ -181,7 +181,7 @@ export class AboutComponent implements OnInit {
       },
       {
         name: 'Inglés',
-        level: '50'
+        level: '30'
       }
     ]
   };

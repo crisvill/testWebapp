@@ -1,3 +1,7 @@
 h2 {
   font-size: 52px;
 }
+
+.ui-progressbar > .ui-progressbar-determinate {
+  height: 0.2em !important;
+}

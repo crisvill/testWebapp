@@ -50,7 +50,7 @@
           <section class="language-section spad">
             <div class="section-title"><h2 translate>Languages</h2></div>
             <div class="col-12" *ngFor="let language of userData.languages; let i = index">
-              <p-progressBar [value]="language.level"></p-progressBar>
+              <p-progressBar [showValue]="false" [value]="language.level"></p-progressBar>
               <p>{{ language.name }}</p>
             </div>
           </section>
@@ -115,7 +115,7 @@
             <div class="section-title"><h2 translate>Skills</h2></div>
             <div class="skills">
               <div *ngFor="let skill of userData.skills; let i = index" class="single-progress-item">
-                <p-progressBar [value]="skill.level"></p-progressBar>
+                <p-progressBar [showValue]="false" [value]="skill.level"></p-progressBar>
                 <p>{{ skill.name }}</p>
               </div>
             </div>
