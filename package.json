@@ -2,6 +2,10 @@
   "name": "webap-pibm",
   "version": "1.0.0",
   "private": true,
+  "engines": {
+    "node": "9.6.0",
+    "npm": "5.6.0"
+  },
   "scripts": {
     "ng": "ng",
     "build": "npm run env -s && ng build --prod",
@@ -98,9 +102,5 @@
         }
       }
     ]
-  },
-  "engines": {
-    "node": "9.6.0",
-    "npm": "5.6.0"
   }
 }
