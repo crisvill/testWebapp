@@ -1,3 +1,5 @@
+import { LocationService } from './../shared/services/location.service';
+import { TutorComponent } from './../register/components/tutor/tutor.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -10,6 +12,7 @@ import { RegisterComponent } from '@app/register/register.component';
 import { ModalModule } from 'ngx-bootstrap';
 import { TypeaheadModule } from 'ngx-bootstrap';
 import { DropdownModule } from 'primeng/dropdown';
+import { UserService } from '@app/shared/services/user.service';
 
 @NgModule({
   imports: [
@@ -22,7 +25,7 @@ import { DropdownModule } from 'primeng/dropdown';
     TypeaheadModule.forRoot(),
     DropdownModule
   ],
-  declarations: [LoginComponent, RegisterComponent],
+  declarations: [LoginComponent, RegisterComponent, TutorComponent],
   entryComponents: [RegisterComponent]
 })
 export class LoginModule {}

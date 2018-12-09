@@ -11,9 +11,7 @@
         <div *ngIf="loadedData && form" class="card-body">
           <h4 class="card-title text-center"><i class="far fa-3x fa-user-circle text-muted"></i></h4>
           <form (ngSubmit)="login()" [formGroup]="form" novalidate>
-            <div class="alert alert-danger" [hidden]="!error || isLoading" translate>
-              Username or password incorrect.
-            </div>
+            <!-- Datos básicos del usuario-->
             <div class="form-group">
               <h3 translate>userData</h3>
               <label class="d-block">
@@ -32,7 +30,7 @@
                   class="text-danger"
                   translate
                 >
-                  TipoDocumentoRequerido
+                  documentTypeRequired
                 </small>
               </label>
               <label class="d-block">
@@ -86,14 +84,15 @@
                   autocomplete="phone"
                   [placeholder]="'phone' | translate"
                 />
-                <span hidden translate>email</span>
-                <small
-                  [hidden]="form.controls.phone.valid || form.controls.phone.untouched"
-                  class="text-danger"
-                  translate
-                >
-                  phoneRequired
-                </small>
+                <span hidden translate>phone</span>
+                <div *ngIf="form.controls.phone.invalid && (form.controls.phone.dirty || form.controls.phone.touched)">
+                  <small *ngIf="form.controls.phone.errors.required" class="text-danger" translate>
+                    phoneRequired
+                  </small>
+                  <small *ngIf="form.controls.phone.errors.maxlength" class="text-danger" translate>
+                    phoneMaxLength
+                  </small>
+                </div>
               </label>
               <hr />
               <!-- Ubicacion -->
@@ -155,12 +154,8 @@
                   countryRequired
                 </small>
               </label>
-
-              <!--  Fin Ubicacion -->
               <!-- Tutor -->
-              <hr />
-              <!-- Ubicacion -->
-              <label *ngIf="userHaveTutor()" class="d-block"> <h4 translate>tutor</h4> </label>
+              <app-tutor *ngIf="userHaveTutor()" [form]="form" [documentTypesList]="documentTypesList"> </app-tutor>
             </div>
             <button class="btn btn-primary w-100" type="submit" [disabled]="form.invalid || isLoading">
               <i class="fas fa-cog fa-spin" [hidden]="!isLoading"></i> <span translate>Register</span>

@@ -1,4 +1,4 @@
-<div class="login-container bg-light">
+<div *ngIf="loadedData" class="login-container bg-light">
   <div class="login-box">
     <h1 translate>APP_NAME</h1>
     <div>
@@ -16,26 +16,25 @@
       <div class="card col-md-6 mt-3 mx-auto">
         <div class="card-body">
           <h4 class="card-title text-center"><i class="far fa-3x fa-user-circle text-muted"></i></h4>
-          <form (ngSubmit)="login()" [formGroup]="loginForm" novalidate>
-            <div class="alert alert-danger" [hidden]="!error || isLoading" translate>
-              Username or password incorrect.
-            </div>
+          <form [formGroup]="loginForm" novalidate>
             <div class="form-group">
               <label class="d-block">
-                <input
-                  type="text"
-                  class="form-control"
+                <p-dropdown
+                  [options]="documentsTypes"
+                  [autoDisplayFirst]="true"
                   formControlName="documentType"
-                  autocomplete="document-type"
                   [placeholder]="'documentType' | translate"
-                />
+                  optionLabel="description"
+                  dataKey="code"
+                >
+                </p-dropdown>
                 <span hidden translate>documentType</span>
                 <small
                   [hidden]="loginForm.controls.documentType.valid || loginForm.controls.documentType.untouched"
                   class="text-danger"
                   translate
                 >
-                  TipoDocumentoRequerido
+                  documentTypeRequired
                 </small>
               </label>
               <label class="d-block">
@@ -47,13 +46,45 @@
                   [placeholder]="'documentNumber' | translate"
                 />
                 <span hidden translate>documentNumber</span>
-                <small
-                  [hidden]="loginForm.controls.document.valid || loginForm.controls.document.untouched"
-                  class="text-danger"
-                  translate
+                <div
+                  *ngIf="
+                    loginForm.controls.document.invalid &&
+                    (loginForm.controls.document.dirty || loginForm.controls.document.touched)
+                  "
                 >
-                  documentNumberRequired
-                </small>
+                  <small *ngIf="loginForm.controls.document.errors.required" class="text-danger" translate>
+                    documentNumberRequired
+                  </small>
+                  <small *ngIf="loginForm.controls.document.errors.maxlength" class="text-danger" translate>
+                    documentMaxLength
+                  </small>
+                </div>
+              </label>
+              <label class="d-block">
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="email"
+                  autocomplete="email"
+                  [placeholder]="'email' | translate"
+                />
+                <span hidden translate>email</span>
+                <div
+                  *ngIf="
+                    loginForm.controls.email.invalid &&
+                    (loginForm.controls.email.dirty || loginForm.controls.email.touched)
+                  "
+                >
+                  <small *ngIf="loginForm.controls.email.errors.required" class="text-danger" translate>
+                    emailRequired
+                  </small>
+                  <small *ngIf="loginForm.controls.email.errors.maxlength" class="text-danger" translate>
+                    emailMaxLength
+                  </small>
+                  <small *ngIf="loginForm.controls.email.errors.invalidEmail" class="text-danger" translate>
+                    emailInvalid
+                  </small>
+                </div>
               </label>
               <label class="d-block">
                 <input
@@ -63,27 +94,31 @@
                   autocomplete="phone"
                   [placeholder]="'phone' | translate"
                 />
-                <span hidden translate>email</span>
-                <small
-                  [hidden]="loginForm.controls.phone.valid || loginForm.controls.phone.untouched"
-                  class="text-danger"
-                  translate
+                <span hidden translate>phone</span>
+                <div
+                  *ngIf="
+                    loginForm.controls.phone.invalid &&
+                    (loginForm.controls.phone.dirty || loginForm.controls.phone.touched)
+                  "
                 >
-                  phoneRequired
-                </small>
+                  <small *ngIf="loginForm.controls.phone.errors.required" class="text-danger" translate>
+                    phoneRequired
+                  </small>
+                  <small *ngIf="loginForm.controls.phone.errors.maxlength" class="text-danger" translate>
+                    phoneMaxLength
+                  </small>
+                </div>
               </label>
-              <div class="form-check">
-                <label class="form-check-label">
-                  <input type="checkbox" class="form-check-input" formControlName="remember" />
-                  <span translate>Remember me</span>
-                </label>
-              </div>
             </div>
-            <button class="btn btn-primary w-100" type="submit" [disabled]="loginForm.invalid || isLoading">
+            <button
+              (click)="login()"
+              class="btn btn-primary w-100"
+              type="submit"
+              [disabled]="loginForm.invalid || isLoading"
+            >
               <i class="fas fa-cog fa-spin" [hidden]="!isLoading"></i> <span translate>Login</span>
             </button>
-
-            <button (click)="openRegisterModal()">OPEN MODAL</button>
+            <div class="mt-3"><button (click)="openRegisterModal()">OPEN MODAL</button></div>
           </form>
         </div>
       </div>

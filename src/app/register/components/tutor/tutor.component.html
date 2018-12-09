@@ -1,0 +1,70 @@
+<hr />
+<div *ngIf="form" [formGroup]="form">
+  <label class="d-block"> <h4 translate>tutor</h4> </label>
+  <label class="d-block">
+    <input
+      type="text"
+      class="form-control"
+      formControlName="nameT"
+      autocomplete="nameT"
+      [placeholder]="'name' | translate"
+    />
+    <span hidden translate>name</span>
+    <div *ngIf="form.controls.nameT.invalid && (form.controls.nameT.dirty || form.controls.nameT.touched)">
+      <small *ngIf="form.controls.nameT.errors.required" class="text-danger" translate> nameRequired </small>
+      <small *ngIf="form.controls.nameT.errors.maxlength" class="text-danger" translate> nameMaxLength </small>
+      <small *ngIf="form.controls.nameT.errors.invalidCharacters" class="text-danger" translate>
+        nameAlphanumeric
+      </small>
+    </div>
+  </label>
+  <label class="d-block">
+    <p-dropdown
+      [options]="documentTypesList"
+      [autoDisplayFirst]="true"
+      formControlName="documentTypeT"
+      [placeholder]="'documentType' | translate"
+      optionLabel="description"
+      dataKey="code"
+    >
+    </p-dropdown>
+    <span hidden translate>documentType</span>
+    <small
+      [hidden]="form.controls.documentTypeT.valid || form.controls.documentTypeT.untouched"
+      class="text-danger"
+      translate
+    >
+      documentTypeRequired
+    </small>
+  </label>
+  <label class="d-block">
+    <input
+      type="text"
+      class="form-control"
+      formControlName="documentT"
+      autocomplete="document-number"
+      [placeholder]="'documentNumber' | translate"
+    />
+    <span hidden translate>documentNumber</span>
+    <div *ngIf="form.controls.documentT.invalid && (form.controls.documentT.dirty || form.controls.documentT.touched)">
+      <small *ngIf="form.controls.documentT.errors.required" class="text-danger" translate>
+        documentNumberRequired
+      </small>
+      <small *ngIf="form.controls.documentT.errors.maxlength" class="text-danger" translate> documentMaxLength </small>
+    </div>
+  </label>
+  <label class="d-block">
+    <input
+      type="text"
+      class="form-control"
+      formControlName="phoneT"
+      autocomplete="phoneT"
+      [placeholder]="'phone' | translate"
+    />
+    <span hidden translate>phone</span>
+    <div *ngIf="form.controls.phoneT.invalid && (form.controls.phoneT.dirty || form.controls.phoneT.touched)">
+      <small *ngIf="form.controls.phoneT.errors.required" class="text-danger" translate> phoneRequired </small>
+      <small *ngIf="form.controls.phoneT.errors.maxlength" class="text-danger" translate> phoneMaxLength </small>
+    </div>
+  </label>
+</div>

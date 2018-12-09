@@ -14,7 +14,7 @@
   "Remember me": "Recordarme",
   "Version": "Versión",
   "documentType": "Tipo de documento",
-  "TipoDocumentoRequerido": "Tipo de documento es requerido",
+  "documentTypeRequired": "Tipo de documento es requerido",
   "documentNumber": "Número de documento",
   "documentNumberRequired": "Número de documento es requerido",
   "email": "Correo eléctronico",
@@ -33,5 +33,10 @@
   "emailMaxLength": "El email no puede superar los 50 caracteres",
   "emailInvalid": "Formato Incorrecto. Ej.: 'person@domain.com'",
   "documentMaxLength": "El documento no puede superar los 13 caracteres",
-  "Register": "Registrar"
+  "Register": "Registrar",
+  "phoneMaxLength": "Teléfono no puede superar los 15 caracteres",
+  "name": "Nombre",
+  "nameRequired": "El nombre es requerido",
+  "nameAlphanumeric": "El nombre debe ser alfanumerico",
+  "nameMaxLength": "El nombre no puede superar los 50 caracteres"
 }

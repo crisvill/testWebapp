@@ -1,12 +1,15 @@
+import { ListType } from '@app/core/models/user.model';
+import { UserService } from '@app/shared/services/user.service';
 import { RegisterComponent } from './../register/register.component';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { finalize } from 'rxjs/operators';
 
 import { environment } from '@env/environment';
 import { Logger, I18nService, AuthenticationService } from '@app/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { emailValidator } from '@app/shared/utils/validators';
+import { finalize } from 'rxjs/operators';
 
 const log = new Logger('Login');
 
@@ -21,24 +24,37 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   isLoading = false;
   bsModalRef: BsModalRef;
-
+  documentsTypes: ListType[];
+  loadedData = false;
   constructor(
-    private router: Router,
-    private route: ActivatedRoute,
-    private formBuilder: FormBuilder,
-    private i18nService: I18nService,
-    private authenticationService: AuthenticationService,
-    private modalService: BsModalService
-  ) {
+    private readonly router: Router,
+    private readonly route: ActivatedRoute,
+    private readonly formBuilder: FormBuilder,
+    private readonly i18nService: I18nService,
+    private readonly authenticationService: AuthenticationService,
+    private readonly modalService: BsModalService,
+    private readonly documentsService: UserService
+  ) {}
+
+  ngOnInit() {
+    this.loadInitialData();
     this.createForm();
   }
 
-  ngOnInit() {}
+  loadInitialData() {
+    this.documentsService.getDocumentsTypes().subscribe(
+      documents => {
+        this.documentsTypes = documents;
+        this.loadedData = true;
+      },
+      err => console.log('Error en carga de lista de tipos de documentos: ', err)
+    );
+  }
 
   login() {
     this.isLoading = true;
 
-    /*  this.authenticationService
+    this.authenticationService
       .login(this.loginForm.value)
       .pipe(
         finalize(() => {
@@ -57,7 +73,7 @@ export class LoginComponent implements OnInit {
           log.debug(`Login error: ${error}`);
           this.error = error;
         }
-      ); */
+      );
   }
 
   setLanguage(language: string) {
@@ -84,13 +100,10 @@ export class LoginComponent implements OnInit {
 
   private createForm() {
     this.loginForm = this.formBuilder.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required],
-      remember: true,
       documentType: ['', Validators.required],
-      document: ['', Validators.required],
-      email: ['', [Validators.required]],
-      phone: ['', Validators.required]
+      document: ['', [Validators.required, Validators.maxLength(13)]],
+      email: ['', [Validators.required, Validators.maxLength(50), emailValidator()]],
+      phone: ['', [Validators.required, Validators.maxLength(15)]]
     });
   }
 }

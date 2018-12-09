@@ -10,10 +10,10 @@ export function emailValidator() {
 }
 
 export function alphanumericValidator() {
-  const objRegExp = /^[A-Za-z0-9]+$/;
+  const objRegExp = /^[A-Za-z0-9]+$/i;
   return (control: AbstractControl): { [key: string]: any } => {
-    const alfanumericoDocValido = control.value ? objRegExp.test(control.value) : true;
-    return !alfanumericoDocValido ? { invalidCaracters: { value: control.value } } : null;
+    const alfanumericoDocValido = control.value ? objRegExp.test(control.value.trim()) : true;
+    return !alfanumericoDocValido ? { invalidCharacters: { value: control.value } } : null;
   };
 }
 

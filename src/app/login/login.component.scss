@@ -8,7 +8,10 @@
   left: 0;
   right: 0;
 }
-
+.btn-primary:disabled {
+  background-color: gray;
+  border-color: gray;
+}
 .login-box {
   display: flex;
   flex-direction: column;
