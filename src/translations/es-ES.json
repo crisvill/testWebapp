@@ -38,5 +38,16 @@
   "name": "Nombre",
   "nameRequired": "El nombre es requerido",
   "nameAlphanumeric": "El nombre debe ser alfanumerico",
-  "nameMaxLength": "El nombre no puede superar los 50 caracteres"
+  "nameMaxLength": "El nombre no puede superar los 50 caracteres",
+  "profile": "Perfíl",
+  "General Info": "Información General",
+  "Date of Birth": "Fecha de Nacimiento",
+  "Address": "Dirección",
+  "E-mail": "Correo Electrónico",
+  "Phone": "Teléfono",
+  "Work Experience": "Experiencia Laboral",
+  "Education": "Educación",
+  "Years of Experience": "Años de Experiencia",
+  "Languages": "Idiomas",
+  "Skills": "Habilidades"
 }

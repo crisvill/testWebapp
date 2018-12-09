@@ -1,14 +1,16 @@
 {
-  "name": "ngX-Rocket",
-  "short_name": "ngX-Rocket",
+  "name": "webapIbm",
+  "short_name": "webapIbm",
   "theme_color": "#488aff",
   "background_color": "#488aff",
   "scope": "/",
   "start_url": "/",
   "display": "standalone",
-  "icons": [{
-    "src": "assets/ngx-rocket-logo.png",
-    "sizes": "512x512",
-    "type": "image/png"
-  }]
+  "icons": [
+    {
+      "src": "assets/ibm-logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
 }

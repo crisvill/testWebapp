@@ -1,10 +1,128 @@
-<div class="container-fluid">
-  <div class="jumbotron text-center">
-    <h1>
-      <span translate>APP_NAME</span>
-    </h1>
-    <p>
-      <i class="far fa-bookmark"></i> <span translate>Version</span> {{version}}
-    </p>
+<div class="home-three-style">
+  <!-- Header section start -->
+  <header class="header-section">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="site-logo">
+            <h2><a href="#" translate>profile</a></h2>
+            <p>"No tengo ning&uacute;n talento especial. Solo soy apasionadamente curioso." A. Einstein</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <!-- Header section end -->
+
+  <div class="container-fluid p-0">
+    <div class="row m-0">
+      <div class="col-xl-5 col-lg-5 p-0">
+        <div class="main-left-area h-100">
+          <section class="intro-section">
+            <figure class="hero-image"><img src="{{ userData.imgUrl }}" alt="UserPhoto" /></figure>
+            <div class="hero-text">
+              <h2>{{ userData.name }}<br />{{ userData.lastName }}</h2>
+              <p>{{ userData.quote }}</p>
+            </div>
+            <p class="mb-5">{{ userData.description }}</p>
+            <div class="hero-info pt-5">
+              <h2 translate>General Info</h2>
+              <ul>
+                <li><span translate>Date of Birth </span><br />{{ userData.birthdate }}</li>
+                <li><span translate>Address </span><br />{{ userData.address }}</li>
+                <li><span translate>E-mail </span><br />{{ userData.email }}</li>
+                <li><span translate>Phone </span><br />{{ userData.phone }}</li>
+              </ul>
+            </div>
+          </section>
+
+          <section class="extra-section spad">
+            <div class="col-md-6 col-sm-12">
+              <div class="fact-box">
+                <div class="fact-content">
+                  <img src="assets/img/icon/1-w.png" alt="" />
+                  <h2>{{ userData.yearsExperience }}</h2>
+                  <p translate>Years of Experience</p>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section class="language-section spad">
+            <div class="section-title"><h2 translate>Languages</h2></div>
+            <div class="col-12" *ngFor="let language of userData.languages; let i = index">
+              <p-progressBar [value]="language.level"></p-progressBar>
+              <p>{{ language.name }}</p>
+            </div>
+          </section>
+          <section>
+            <div class="icon-box-area spad">
+              <div class="icon-box">
+                <i class="flaticon-032-cooking"></i>
+                <p>Cooking</p>
+              </div>
+              <div class="icon-box">
+                <i class="flaticon-015-photo-camera"></i>
+                <p>Photography</p>
+              </div>
+              <div class="icon-box">
+                <i class="flaticon-013-chess-1"></i>
+                <p>Playing Chess</p>
+              </div>
+              <div class="icon-box">
+                <i class="flaticon-001-yoga"></i>
+                <p>Yoga</p>
+              </div>
+              <div class="icon-box">
+                <i class="flaticon-035-tent"></i>
+                <p>Camping in nature</p>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <div class="col-xl-6 col-lg-7">
+        <div class="main-right-area">
+          <!-- Resume section start -->
+          <section class="resume-section spad pt-0">
+            <div class="section-title"><h2 translate>Work Experience</h2></div>
+            <ul class="resume-list">
+              <li *ngFor="let work of userData.workExperience; let i = index">
+                <h2>{{ work.company }}</h2>
+                <h3>{{ work.initialDate }} - {{ work.finalDate }}</h3>
+                <h4>{{ work.position }}</h4>
+                <p>{{ work.description }}</p>
+              </li>
+            </ul>
+          </section>
+          <!-- Resume section end -->
+
+          <!-- Resume section start -->
+          <section class="resume-section">
+            <div class="section-title"><h2 translate>Education</h2></div>
+            <ul class="resume-list">
+              <li *ngFor="let educ of userData.education; let i = index">
+                <h2>{{ educ.initialDate }} / {{ educ.finalDate }}</h2>
+                <h3>{{ educ.degree }}</h3>
+                <h4>{{ educ.institution }}</h4>
+                <p>{{ educ.description }}</p>
+              </li>
+            </ul>
+          </section>
+          <!-- Resume section end -->
+          <!-- skill section start -->
+          <div class="skill-section">
+            <div class="section-title"><h2 translate>Skills</h2></div>
+            <div class="skills">
+              <div *ngFor="let skill of userData.skills; let i = index" class="single-progress-item">
+                <p-progressBar [value]="skill.level"></p-progressBar>
+                <p>{{ skill.name }}</p>
+              </div>
+            </div>
+          </div>
+          <!-- skill section end -->
+        </div>
+      </div>
+    </div>
   </div>
 </div>
