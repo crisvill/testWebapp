@@ -1,0 +1,173 @@
+<div class="modal-content modal-lg">
+  <div class="modal-header">
+    <h5 class="modal-title">Registro de Usuario</h5>
+    <button type="button" class="close" aria-label="Close" (click)="bsModalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div>
+    <div class="container">
+      <div class="card col-md-10 mt-3 mb-3 mx-auto">
+        <div *ngIf="loadedData && form" class="card-body">
+          <h4 class="card-title text-center"><i class="far fa-3x fa-user-circle text-muted"></i></h4>
+          <form (ngSubmit)="login()" [formGroup]="form" novalidate>
+            <div class="alert alert-danger" [hidden]="!error || isLoading" translate>
+              Username or password incorrect.
+            </div>
+            <div class="form-group">
+              <h3 translate>userData</h3>
+              <label class="d-block">
+                <p-dropdown
+                  [options]="documentTypesList"
+                  [autoDisplayFirst]="true"
+                  formControlName="documentType"
+                  [placeholder]="'documentType' | translate"
+                  optionLabel="description"
+                  dataKey="code"
+                >
+                </p-dropdown>
+                <span hidden translate>documentType</span>
+                <small
+                  [hidden]="form.controls.documentType.valid || form.controls.documentType.untouched"
+                  class="text-danger"
+                  translate
+                >
+                  TipoDocumentoRequerido
+                </small>
+              </label>
+              <label class="d-block">
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="document"
+                  autocomplete="document-number"
+                  [placeholder]="'documentNumber' | translate"
+                />
+                <span hidden translate>documentNumber</span>
+                <div
+                  *ngIf="
+                    form.controls.document.invalid && (form.controls.document.dirty || form.controls.document.touched)
+                  "
+                >
+                  <small *ngIf="form.controls.document.errors.required" class="text-danger" translate>
+                    documentNumberRequired
+                  </small>
+                  <small *ngIf="form.controls.document.errors.maxlength" class="text-danger" translate>
+                    documentMaxLength
+                  </small>
+                </div>
+              </label>
+              <label class="d-block">
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="email"
+                  autocomplete="email"
+                  [placeholder]="'email' | translate"
+                />
+                <span hidden translate>email</span>
+                <div *ngIf="form.controls.email.invalid && (form.controls.email.dirty || form.controls.email.touched)">
+                  <small *ngIf="form.controls.email.errors.required" class="text-danger" translate>
+                    emailRequired
+                  </small>
+                  <small *ngIf="form.controls.email.errors.maxlength" class="text-danger" translate>
+                    emailMaxLength
+                  </small>
+                  <small *ngIf="form.controls.email.errors.invalidEmail" class="text-danger" translate>
+                    emailInvalid
+                  </small>
+                </div>
+              </label>
+              <label class="d-block">
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="phone"
+                  autocomplete="phone"
+                  [placeholder]="'phone' | translate"
+                />
+                <span hidden translate>email</span>
+                <small
+                  [hidden]="form.controls.phone.valid || form.controls.phone.untouched"
+                  class="text-danger"
+                  translate
+                >
+                  phoneRequired
+                </small>
+              </label>
+              <hr />
+              <!-- Ubicacion -->
+              <h4 translate>location</h4>
+              <label class="d-block">
+                <p-dropdown
+                  [options]="countries"
+                  [autoDisplayFirst]="true"
+                  formControlName="country"
+                  [placeholder]="'country' | translate"
+                  optionLabel="description"
+                  dataKey="code"
+                >
+                </p-dropdown>
+                <span hidden translate>country</span>
+                <small
+                  [hidden]="form.controls.country.valid || form.controls.country.untouched"
+                  class="text-danger"
+                  translate
+                >
+                  countryRequired
+                </small>
+              </label>
+              <label class="d-block">
+                <p-dropdown
+                  [options]="departments"
+                  [autoDisplayFirst]="true"
+                  formControlName="department"
+                  [placeholder]="'department' | translate"
+                  optionLabel="description"
+                  dataKey="code"
+                >
+                </p-dropdown>
+                <span hidden translate>department</span>
+                <small
+                  [hidden]="form.controls.department.valid || form.controls.department.untouched"
+                  class="text-danger"
+                  translate
+                >
+                  countryRequired
+                </small>
+              </label>
+              <label class="d-block">
+                <p-dropdown
+                  [options]="cities"
+                  [autoDisplayFirst]="true"
+                  formControlName="city"
+                  [placeholder]="'city' | translate"
+                  optionLabel="description"
+                  dataKey="code"
+                >
+                </p-dropdown>
+                <span hidden translate>city</span>
+                <small
+                  [hidden]="form.controls.city.valid || form.controls.city.untouched"
+                  class="text-danger"
+                  translate
+                >
+                  countryRequired
+                </small>
+              </label>
+
+              <!--  Fin Ubicacion -->
+              <!-- Tutor -->
+              <hr />
+              <!-- Ubicacion -->
+              <label *ngIf="userHaveTutor()" class="d-block"> <h4 translate>tutor</h4> </label>
+            </div>
+            <button class="btn btn-primary w-100" type="submit" [disabled]="form.invalid || isLoading">
+              <i class="fas fa-cog fa-spin" [hidden]="!isLoading"></i> <span translate>Register</span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -12,5 +12,13 @@
   "Username is required": "Username is required",
   "Username or password incorrect.": "Username or password incorrect.",
   "Remember me": "Remember me",
-  "Version": "Version"
+  "Version": "Version",
+  "documentType": "Document type",
+  "TipoDocumentoRequerido": "Document type is required",
+  "documentNumber": "Document number",
+  "documentNumberRequired": "Document number is required",
+  "email": "Email",
+  "emailRequired": "Email is required",
+  "phone": "Phone",
+  "phoneRequired": "Phone is required"
 }
