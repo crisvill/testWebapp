@@ -1,7 +1,7 @@
 {
   "APP_NAME": "Webapp IBM",
   "About": "Acerca de",
-  "Hello world !": "HOla Mundo !",
+  "Hello world !": "Hola Mundo !",
   "Home": "Página Principal",
   "Logged in as": "Has iniciado sesión como",
   "Login": "Iniciar Sesión",
@@ -49,5 +49,6 @@
   "Education": "Educación",
   "Years of Experience": "Años de Experiencia",
   "Languages": "Idiomas",
-  "Skills": "Habilidades"
+  "Skills": "Habilidades",
+  "All rights reserved by": "Todos los derechos reservados por"
 }
