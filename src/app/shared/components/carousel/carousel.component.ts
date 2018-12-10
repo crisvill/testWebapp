@@ -1,5 +1,6 @@
 import { images } from './../../mocks/images.data';
 import { ImageService } from './../../services/image.service';
+import { OnInit, Component } from '@angular/core';
 
 @Component({
   selector: 'app-carousel',
@@ -19,7 +20,6 @@ export class CarouselComponent implements OnInit {
   loadData() {
     this.imageService.getImages('7').subscribe(
       data => {
-        console.log('Datos cargados', data);
         this.items = data;
         this.loadedData = true;
       },

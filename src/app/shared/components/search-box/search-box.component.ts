@@ -40,7 +40,6 @@ export class SearchBoxComponent implements OnInit {
   }
   getUser(): void {
     this.userService.search(this.searchTerms).subscribe((results: User[]) => {
-      console.log('Results: ', results);
       this.results = results;
       this.listVisible = true;
     });
@@ -52,7 +51,6 @@ export class SearchBoxComponent implements OnInit {
   }
 
   _emitUser() {
-    console.log('Emitiendo datos');
     this.userResult.emit(this.usuarioSelected);
   }
 }

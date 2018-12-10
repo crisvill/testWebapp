@@ -19,7 +19,6 @@ export class HomeComponent implements OnInit {
   ngOnInit() {}
 
   onChangeUser(data: User) {
-    console.log('Datos recibidos: ', data);
     this.userResult = data;
   }
 }

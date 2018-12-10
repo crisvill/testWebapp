@@ -72,7 +72,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
       .get('country')
       .valueChanges.pipe(takeUntil(this.subs))
       .subscribe((value: any) => {
-        console.log('Pais seleccionado: ', value);
         this.loadDepartments(value.code);
       });
   }
@@ -82,7 +81,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
       .get('department')
       .valueChanges.pipe(takeUntil(this.subs))
       .subscribe((value: any) => {
-        console.log('Departamento seleccionado: ', value);
         const countryCode = this.form.get('country').value.code;
         this.loadCities(countryCode, value.code);
       });
