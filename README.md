@@ -18,6 +18,8 @@ Proyecto web construído con angular 7 + bootstrap
 
 # Demo
 Puedes ver éste proyecto desplegado en  [Heroku](https://webappibm.herokuapp.com/login)
+- Para iniciar sesión basta llenar los campos con datos cualquiera y presionar el botón de "Inicio de sesión".
+- Abrir el modal de resgitro de nuevo usuario hacer click en enlace "registrar usuario" en pantalla de login. 
 
 # Inicio
 
