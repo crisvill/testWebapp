@@ -1,0 +1,58 @@
+<div *ngIf="userData" class="home-three-style">
+  <div class="container-fluid p-1">
+    <div class="row m-0">
+      <div class="col-xl-5 col-lg-5 p-0">
+        <div class="main-left-area h-100 pt-3">
+          <section class="intro-section">
+            <h2>{{ userData.name }}</h2>
+            <div class="hero-info pt-1">
+              <h2 translate>General Info</h2>
+              <ul>
+                <li><span translate>documentType </span><br />{{ userData.documentType.description }}</li>
+                <li><span translate>document </span><br />{{ userData.document }}</li>
+                <li><span translate>E-mail </span><br />{{ userData.email }}</li>
+                <li><span translate>Phone </span><br />{{ userData.phone }}</li>
+              </ul>
+            </div>
+          </section>
+        </div>
+      </div>
+      <div class="col-xl-6 col-lg-7">
+        <div class="main-right-area pt-3">
+          <!-- address section start -->
+          <section class="resume-section spad py-0">
+            <div class="hero-info pt-1 mt-0">
+              <h2 translate>Address</h2>
+              <ul class="">
+                <ul>
+                  <li><span translate>country </span><br />{{ userData.location.country.description }}</li>
+                  <li><span translate>department </span><br />{{ userData.location.department.description }}</li>
+                  <li><span translate>city </span><br />{{ userData.location.city }}</li>
+                </ul>
+              </ul>
+            </div>
+          </section>
+          <section *ngIf="userData.tutor" class="resume-section spad pt-0">
+            <div class="hero-info pt-1 mt-0">
+              <h2 translate>Tutor</h2>
+              <ul class="">
+                <ul>
+                  <li><span translate>documentType </span><br />{{ userData.tutor.documentType.description }}</li>
+                  <li><span translate>document </span><br />{{ userData.tutor.document }}</li>
+                  <li><span translate>name </span><br />{{ userData.tutor.name }}</li>
+                  <li><span translate>Phone </span><br />{{ userData.tutor.phone }}</li>
+                </ul>
+              </ul>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="!userData" class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">Introduzca un usuario en el cuadro de búsqueda</h1>
+    <p class="lead">Los resultados de búsqueda serán mostrados aquí</p>
+  </div>
+</div>

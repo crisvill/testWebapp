@@ -27,7 +27,7 @@
   "departmentRequired": "Departamento requerido",
   "city": "Ciudad",
   "cityRequired": "Ciudad Requerida",
-  "location": "Location",
+  "location": "Ubicación",
   "userData": "Datos del Usuario",
   "tutor": "Tutor",
   "emailMaxLength": "El email no puede superar los 50 caracteres",
@@ -50,5 +50,7 @@
   "Years of Experience": "Años de Experiencia",
   "Languages": "Idiomas",
   "Skills": "Habilidades",
-  "All rights reserved by": "Todos los derechos reservados por"
+  "All rights reserved by": "Todos los derechos reservados por",
+  "Sign in User": "Registrar usuario",
+  "user...": "Usuario..."
 }

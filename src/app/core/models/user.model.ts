@@ -5,7 +5,7 @@ export interface ListType {
 
 export interface Location {
   country: ListType;
-  deparment: ListType;
+  department: ListType;
   city: string;
 }
 
@@ -20,4 +20,6 @@ export interface Tutor extends Person {
 export interface User extends Person {
   email: string;
   location: Location;
+  tutor?: Tutor;
+  name: string;
 }

@@ -1,6 +1,13 @@
 @import "src/theme/theme-variables";
 @import "~bootstrap/scss/mixins/_breakpoints";
 
+#register-link {
+  text-decoration: underline;
+}
+#register-link:hover {
+  cursor: pointer;
+}
+
 .login-container {
   position: absolute;
   top: 0;

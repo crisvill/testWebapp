@@ -1,0 +1,11 @@
+<p-carousel *ngIf="loadedData" [value]="items">
+  <ng-template let-item pTemplate="item">
+    <div class="ui-grid ui-grid-responsive">
+      <div class="ui-grid-row">
+        <div id="card-carousel" style="min-height: 200px" class="ui-grid-col-12">
+          <img src="{{ item.urlImg }}" alt="..." class="img-thumbnail" />
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</p-carousel>

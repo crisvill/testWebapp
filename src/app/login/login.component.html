@@ -26,6 +26,8 @@
                   [placeholder]="'documentType' | translate"
                   optionLabel="description"
                   dataKey="code"
+                  [autoWidth]="false"
+                  [style]="{ width: '100%' }"
                 >
                 </p-dropdown>
                 <span hidden translate>documentType</span>
@@ -118,7 +120,9 @@
             >
               <i class="fas fa-cog fa-spin" [hidden]="!isLoading"></i> <span translate>Login</span>
             </button>
-            <div class="mt-3"><button (click)="openRegisterModal()">OPEN MODAL</button></div>
+            <div>
+              <p id="register-link" class="text-center" (click)="openRegisterModal()" translate>Sign in User</p>
+            </div>
           </form>
         </div>
       </div>

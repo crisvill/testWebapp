@@ -1,0 +1,49 @@
+$ibm-primary: #3367f8;
+$ibm-secondary: rgba(233, 233, 233, 1);
+.search-result {
+  border-bottom: 1px solid gray;
+  border-left: 1px solid gray;
+  border-right: 1px solid gray;
+  background-color: white;
+  cursor: pointer;
+}
+
+.search-result:hover {
+  color: #eee;
+  background-color: #607d8b;
+}
+
+#search-component {
+  width: 100%;
+}
+
+.search-box {
+  width: 100%;
+  max-width: 400px;
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+.ibm-primary {
+  background-color: $ibm-primary;
+  color: $ibm-secondary;
+}
+
+.ibm-primary:hover {
+  background-color: rgb(34, 82, 238);
+  color: #3a3838;
+}
+
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+  .span {
+    max-width: 20%;
+  }
+  .btn {
+    font-size: 0;
+    height: 100%;
+  }
+  .fa {
+    font-size: initial;
+  }
+}

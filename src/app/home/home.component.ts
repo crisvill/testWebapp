@@ -1,3 +1,4 @@
+import { User } from './../core/models/user.model';
 import { Component, OnInit } from '@angular/core';
 import { finalize } from 'rxjs/operators';
 
@@ -11,20 +12,14 @@ import { QuoteService } from './quote.service';
 export class HomeComponent implements OnInit {
   quote: string;
   isLoading: boolean;
+  userResult: any;
 
   constructor(private quoteService: QuoteService) {}
 
-  ngOnInit() {
-    this.isLoading = true;
-    this.quoteService
-      .getRandomQuote({ category: 'dev' })
-      .pipe(
-        finalize(() => {
-          this.isLoading = false;
-        })
-      )
-      .subscribe((quote: string) => {
-        this.quote = quote;
-      });
+  ngOnInit() {}
+
+  onChangeUser(data: User) {
+    console.log('Datos recibidos: ', data);
+    this.userResult = data;
   }
 }
