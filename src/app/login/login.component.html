@@ -57,8 +57,8 @@
                   <small *ngIf="loginForm.controls.document.errors.required" class="text-danger" translate>
                     documentNumberRequired
                   </small>
-                  <small *ngIf="loginForm.controls.document.errors.maxlength" class="text-danger" translate>
-                    documentMaxLength
+                  <small *ngIf="loginForm.controls.document.errors.invalidSize" class="text-danger" translate>
+                    documentInvalidLength
                   </small>
                 </div>
               </label>
@@ -90,6 +90,7 @@
               </label>
               <label class="d-block">
                 <input
+                  appType="phone"
                   type="text"
                   class="form-control"
                   formControlName="phone"

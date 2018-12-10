@@ -3,7 +3,7 @@ import { LocationService } from './../shared/services/location.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap';
-import { emailValidator, alphanumericValidator } from '@app/shared/utils/validators';
+import { emailValidator, alphanumericValidator, sizeCharacterValidator } from '@app/shared/utils/validators';
 import { takeUntil, finalize } from 'rxjs/operators';
 import { ListType } from '@app/core/models/user.model';
 import { UserService } from '@app/shared/services/user.service';
@@ -128,7 +128,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
   createForm() {
     this.form = this.fb.group({
       documentType: ['', Validators.required],
-      document: ['', [Validators.required, Validators.maxLength(13)]],
+      document: ['', [Validators.required, sizeCharacterValidator(13)]],
       email: ['', [Validators.required, Validators.maxLength(50), emailValidator()]],
       phone: ['', [Validators.required, Validators.maxLength(15)]],
       country: ['', Validators.required],
@@ -142,7 +142,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   addTutor() {
     this.form.addControl('documentTypeT', this.fb.control('', Validators.required));
-    this.form.addControl('documentT', this.fb.control('', [Validators.required, Validators.maxLength(50)]));
+    this.form.addControl('documentT', this.fb.control('', [Validators.required, sizeCharacterValidator(13)]));
     this.form.addControl('phoneT', this.fb.control('', [Validators.required, Validators.maxLength(15)]));
     this.form.addControl(
       'nameT',

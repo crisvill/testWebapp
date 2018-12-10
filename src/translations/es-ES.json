@@ -53,5 +53,6 @@
   "All rights reserved by": "Todos los derechos reservados por",
   "Sign in User": "Registrar usuario",
   "user...": "Usuario...",
-  "Accept": "Aceptar"
+  "Accept": "Aceptar",
+  "documentInvalidLength": "El documento debe tener 13 caracteres exactos"
 }

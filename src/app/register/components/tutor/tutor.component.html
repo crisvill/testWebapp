@@ -52,11 +52,14 @@
       <small *ngIf="form.controls.documentT.errors.required" class="text-danger" translate>
         documentNumberRequired
       </small>
-      <small *ngIf="form.controls.documentT.errors.maxlength" class="text-danger" translate> documentMaxLength </small>
+      <small *ngIf="form.controls.documentT.errors.invalidSize" class="text-danger" translate>
+        documentInvalidLength
+      </small>
     </div>
   </label>
   <label class="d-block">
     <input
+      appType="phone"
       type="text"
       class="form-control"
       formControlName="phoneT"

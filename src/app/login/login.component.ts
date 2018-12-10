@@ -8,7 +8,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { environment } from '@env/environment';
 import { Logger, I18nService, AuthenticationService } from '@app/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
-import { emailValidator } from '@app/shared/utils/validators';
+import { emailValidator, sizeCharacterValidator } from '@app/shared/utils/validators';
 import { finalize } from 'rxjs/operators';
 
 const log = new Logger('Login');
@@ -101,7 +101,7 @@ export class LoginComponent implements OnInit {
   private createForm() {
     this.loginForm = this.formBuilder.group({
       documentType: ['', Validators.required],
-      document: ['', [Validators.required, Validators.maxLength(13)]],
+      document: ['', [Validators.required, sizeCharacterValidator(13)]],
       email: ['', [Validators.required, Validators.maxLength(50), emailValidator()]],
       phone: ['', [Validators.required, Validators.maxLength(15)]]
     });

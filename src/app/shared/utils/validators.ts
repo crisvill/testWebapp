@@ -16,49 +16,9 @@ export function alphanumericValidator() {
     return !alfanumericoDocValido ? { invalidCharacters: { value: control.value } } : null;
   };
 }
-
-export function regexValidator(regex: RegExp, error: ValidationErrors): ValidatorFn {
+export function sizeCharacterValidator(size: number) {
   return (control: AbstractControl): { [key: string]: any } => {
-    if (!control.value) {
-      return null;
-    }
-    const value = control.value && control.value.toString();
-    const valid = regex.test(value);
-    return valid ? null : error;
-  };
-}
-
-export function decimalFormatValidador(): ValidatorFn {
-  return (control: AbstractControl): { [key: string]: any } => {
-    const decimalFormatRegEx: RegExp = /^\d+(\.[0-9]+)?$/;
-    if (!decimalFormatRegEx.test('' + control.value)) {
-      return { decimalFormatError: true };
-    }
-    const regExp: RegExp = /^\d+(\.[0-9]{1,2})?$/;
-    const esFraccionValida = control.value ? regExp.test('' + control.value) : true;
-    return esFraccionValida ? null : { maxDecimals: true };
-  };
-}
-
-export function decimalValidador(): ValidatorFn {
-  return (control: AbstractControl): { [key: string]: any } => {
-    const regExp: RegExp = /^\d+(\.[0-9]{1,2})?$/;
-    const esFraccionValida = control.value ? regExp.test('' + control.value) : true;
-    return esFraccionValida ? null : { esFraccionValida: true };
-  };
-}
-
-export function decimalValidadorConVacio(): ValidatorFn {
-  return (control: AbstractControl): { [key: string]: any } => {
-    const regExp: RegExp = /^[\d]+\.?([0-9]{1,2})?$/;
-    const esFraccionValida = regExp.test('' + control.value);
-    return esFraccionValida || control.value === '' ? null : { esFraccionValida: true };
-  };
-}
-
-export function validarTypeahead(items: any, field: string) {
-  return (control: AbstractControl): { [key: string]: any } => {
-    const notFound = items && items.length > 0 ? items.some((f: any) => f[field] === control.value) : undefined;
-    return !notFound ? { typeaheadNotFound: { value: control.value } } : null;
+    const validSize = control.value ? control.value.length !== size : false;
+    return validSize ? { invalidSize: { value: control.value } } : null;
   };
 }
