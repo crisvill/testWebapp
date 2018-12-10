@@ -6,5 +6,5 @@ export const environment = {
   version: env.npm_package_version,
   serverUrl: 'https://api.chucknorris.io',
   defaultLanguage: 'es-ES',
-  supportedLanguages: ['en-US', 'fr-FR', 'es-ES']
+  supportedLanguages: ['en-US', 'es-ES']
 };
