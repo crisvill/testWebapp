@@ -1,7 +1,5 @@
 import { images } from './../../mocks/images.data';
 import { ImageService } from './../../services/image.service';
-import { Component, OnInit, Input } from '@angular/core';
-import { NguCarouselConfig } from '@ngu/carousel';
 
 @Component({
   selector: 'app-carousel',
