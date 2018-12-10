@@ -1,12 +1,16 @@
-import { Subject } from 'rxjs';
+import { Subject, forkJoin } from 'rxjs';
 import { LocationService } from './../shared/services/location.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap';
-import { validarTypeahead, emailValidator, alphanumericValidator } from '@app/shared/utils/validators';
-import { takeUntil } from 'rxjs/operators';
+import { emailValidator, alphanumericValidator } from '@app/shared/utils/validators';
+import { takeUntil, finalize } from 'rxjs/operators';
 import { ListType } from '@app/core/models/user.model';
+import { UserService } from '@app/shared/services/user.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Logger, AuthenticationService } from '@app/core';
 
+const log = new Logger('Login');
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -14,25 +18,22 @@ import { ListType } from '@app/core/models/user.model';
 })
 export class RegisterComponent implements OnInit, OnDestroy {
   form: FormGroup;
-  documentTypesList: ListType[] = [
-    { code: 'TI', description: 'Tarjeta de Identidad' },
-    { code: 'CC', description: 'Cedula de ciudadania' },
-    { code: 'CE', description: 'Cedula de extrangeria' },
-    { code: 'NIT', description: 'NIT' },
-    { code: 'PP', description: 'Pasaporte' },
-    { code: 'NUIP', description: 'NUIP' }
-  ];
+  documentTypesList: ListType[];
   isLoading = false;
   loadedData = false;
   countries: any[];
   departments: any[];
   cities: string[];
   subs: Subject<void> = new Subject<void>();
-
+  displayDialog = false;
   constructor(
+    private readonly router: Router,
+    private readonly route: ActivatedRoute,
     private readonly fb: FormBuilder,
     public bsModalRef: BsModalRef,
-    private readonly locationService: LocationService
+    private readonly locationService: LocationService,
+    private readonly documentsService: UserService,
+    private readonly authenticationService: AuthenticationService
   ) {}
 
   ngOnInit() {
@@ -40,16 +41,41 @@ export class RegisterComponent implements OnInit, OnDestroy {
     this.loadInitialData();
   }
 
-  saveUser() {}
+  saveUser() {
+    this.displayDialog = true;
+  }
+  redirectHome() {
+    this.authenticationService
+      .login(this.form.value)
+      .pipe(
+        finalize(() => {
+          this.form.markAsPristine();
+          this.isLoading = false;
+        })
+      )
+      .subscribe(
+        credentials => {
+          log.debug(`${credentials.username} successfully logged in`);
+          this.route.queryParams.subscribe(params => {
+            this.router.navigate([params.redirect || '/'], { replaceUrl: true });
+            this.bsModalRef.hide();
+          });
+        },
+        error => {
+          log.debug(`Login error: ${error}`);
+        }
+      );
+  }
 
   loadInitialData() {
-    this.locationService
-      .getCountriesList()
-      .subscribe(
-        (countries: ListType[]) => (this.countries = countries),
-        err => console.log('Error cargando paises: ', err),
-        () => (this.loadedData = true)
-      );
+    forkJoin(this.locationService.getCountriesList(), this.documentsService.getDocumentsTypes()).subscribe(
+      ([countries, documents]) => {
+        this.countries = countries;
+        this.documentTypesList = documents;
+        this.loadedData = true;
+      },
+      err => console.log('Ha ocurrido un error en la carga de los servicios.: ', err)
+    );
   }
 
   loadDepartments(countryCode: string) {

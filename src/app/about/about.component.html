@@ -46,23 +46,26 @@
               </div>
             </div>
           </section>
-          <section class="language-section spad">
-            <div class="section-title"><h2 translate>Languages</h2></div>
-            <div class="col-12" *ngFor="let language of userData.languages; let i = index">
-              <p-progressBar [showValue]="false" [value]="language.level"></p-progressBar>
-              <p>{{ language.name }}</p>
+          <!-- Skills section -->
+          <div class="skill-section">
+            <div class="section-title"><h2 translate>Skills</h2></div>
+            <div class="skills">
+              <div *ngFor="let skill of userData.skills; let i = index" class="single-progress-item">
+                <p-progressBar [showValue]="false" [value]="skill.level"></p-progressBar>
+                <p>{{ skill.name }}</p>
+              </div>
             </div>
-          </section>
+          </div>
         </div>
       </div>
 
       <div class="col-xl-6 col-lg-7">
-        <div class="main-right-area">
+        <div class="main-right-area py-4">
           <!-- Resume section start -->
-          <section class="resume-section spad pt-0">
+          <section class="resume-section">
             <div class="section-title"><h2 translate>Work Experience</h2></div>
-            <ul class="resume-list">
-              <li *ngFor="let work of userData.workExperience; let i = index">
+            <ul class="resume-list pt-5">
+              <li *ngFor="let work of userData.workExperience; let i = index" class="pb-1">
                 <h2>{{ work.company }}</h2>
                 <h3>{{ work.initialDate }} - {{ work.finalDate }}</h3>
                 <h4>{{ work.position }}</h4>
@@ -73,10 +76,10 @@
           <!-- Resume section end -->
 
           <!-- Resume section start -->
-          <section class="resume-section">
+          <section class="resume-section pt-5">
             <div class="section-title"><h2 translate>Education</h2></div>
             <ul class="resume-list">
-              <li *ngFor="let educ of userData.education; let i = index">
+              <li *ngFor="let educ of userData.education; let i = index" class="mb-5 py-1">
                 <h2>{{ educ.initialDate }} / {{ educ.finalDate }}</h2>
                 <h3>{{ educ.degree }}</h3>
                 <h4>{{ educ.institution }}</h4>
@@ -85,17 +88,15 @@
             </ul>
           </section>
           <!-- Resume section end -->
-          <!-- skill section start -->
-          <div class="skill-section">
-            <div class="section-title"><h2 translate>Skills</h2></div>
-            <div class="skills">
-              <div *ngFor="let skill of userData.skills; let i = index" class="single-progress-item">
-                <p-progressBar [showValue]="false" [value]="skill.level"></p-progressBar>
-                <p>{{ skill.name }}</p>
-              </div>
+          <!-- language section start -->
+          <section class="language-section pt-5">
+            <div class="section-title"><h2 translate>Languages</h2></div>
+            <div class="col-12" *ngFor="let language of userData.languages; let i = index">
+              <p-progressBar [showValue]="false" [value]="language.level"></p-progressBar>
+              <p>{{ language.name }}</p>
             </div>
-          </div>
-          <!-- skill section end -->
+          </section>
+          <!-- language section end -->
         </div>
       </div>
     </div>

@@ -48,9 +48,10 @@ export class SearchBoxComponent implements OnInit {
     this.user = user.name;
     this.listVisible = false;
     this.usuarioSelected = user;
+    this.emitUser();
   }
 
-  _emitUser() {
+  emitUser() {
     this.userResult.emit(this.usuarioSelected);
   }
 }

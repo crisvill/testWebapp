@@ -12,8 +12,7 @@ import { RegisterComponent } from '@app/register/register.component';
 import { ModalModule } from 'ngx-bootstrap';
 import { TypeaheadModule } from 'ngx-bootstrap';
 import { DropdownModule } from 'primeng/dropdown';
-import { UserService } from '@app/shared/services/user.service';
-
+import { DialogModule } from 'primeng/dialog';
 @NgModule({
   imports: [
     CommonModule,
@@ -23,7 +22,8 @@ import { UserService } from '@app/shared/services/user.service';
     LoginRoutingModule,
     ModalModule.forRoot(),
     TypeaheadModule.forRoot(),
-    DropdownModule
+    DropdownModule,
+    DialogModule
   ],
   declarations: [LoginComponent, RegisterComponent, TutorComponent],
   entryComponents: [RegisterComponent]
